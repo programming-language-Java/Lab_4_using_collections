@@ -3,23 +3,30 @@ import java.util.*;
 public class Main extends Indent {
     static String[] commands;
     static Scanner sc = new Scanner(System.in);
-    public static ArrayList<MetroStation> metroStations = new ArrayList<>();
+    static ArrayList<MetroStation> metroStations = new ArrayList<>();
     static String name;
     static String lineMetro;
     static int numberOfExists;
-    public static MetroStation metroStation;
+    static MetroStation metroStation;
     static String continueEntering;
+    static TreeMap tm = new TreeMap();
 
     public static void main(String[] args) {
         System.out.println("Настройка станций метро");
         commands = new String[]{
-                "Добавить несколько",   // 1
-                "Добавить по индексу",  // 2
-                "Обновить",             // 3
-                "Удалить",              // 4
-                "Удалить всё",          // 5
-                "Вывести всё",          // 6
-                "Выйти"                 // 7
+                "Добавить несколько",                   // 1
+                "Добавить по индексу",                  // 2
+                "Обновить",                             // 3
+                "Удалить",                              // 4
+                "Очистить",                             // 5
+                "Вывести всё",                          // 6
+                "Добавить несколько коллекций",         // 7
+                "Добавить в коллекцию",                 // 8
+                "Вывести все коллекции",                // 9
+                "Вывести коллекцию",                    // 10
+                "Удалить из коллекции",                 // 11
+                "Очистить коллекции",                   // 12
+                "Выйти"                                 // 13
         };
         int command;
         do {
@@ -43,18 +50,41 @@ public class Main extends Indent {
         showEmptyParagraph();
         if (command == 1)
             requestMetroStations();
-        if (command == 2)
+        else if (command == 2)
             addByPosition();
-        if (command == 3)
+        else if (command == 3)
             update();
-        if (command == 4)
+        else if (command == 4)
             delete();
-        if (command == 5)
+        else if (command == 5)
             deleteAll();
-        if (command == 6)
+        else if (command == 6)
             showMetroStations();
-        if (command == 7)
+        else if (command == 7)
+            addCollections();
+        else if (command == 8)
+            addToCollection();
+        else if (command == 9)
+            showCollections();
+        else if (command == 10)
+            showCollection();
+        else if (command == 11)
+            deleteCollection();
+        else if (command == 12)
+            deleteAllCollections();
+        else if (command == 13)
             System.exit(0);
+    }
+
+    public static void addCollections() {
+        System.out.println("Введите коллекции:");
+        do {
+            requestMetroStation();
+            tm.put(name, new MetroStation(name, lineMetro, numberOfExists));
+            System.out.print("Продолжить ввод станции метро? (y/n): ");
+            continueEntering = sc.next();
+            showEmptyParagraph();
+        } while (continueEntering.equals("y"));
     }
 
 
@@ -115,13 +145,49 @@ public class Main extends Indent {
         int position = 1;
         for (MetroStation metroStation : metroStations) {
             showEmptyParagraph();
-            System.out.println(Integer.toString(position) + metroStation);
+            System.out.println(position + "\n" + metroStation);
             isExist = true;
             position++;
         }
         if (!isExist)
             System.out.println("Пусто");
         showEmptyParagraph();
+    }
+
+    public static void addToCollection() {
+        System.out.println("Добавить в коллекцию метро:");
+        requestMetroStation();
+        tm.put(name, new MetroStation(name, lineMetro, numberOfExists));
+    }
+
+    public static void showCollections() {
+        System.out.println("Коллекции");
+        Set set = tm.entrySet();
+        Iterator i = set.iterator();
+        while (i.hasNext()) {
+            showEmptyParagraph();
+            Map.Entry me = (Map.Entry) i.next();
+            System.out.println(me.getKey() + ":");
+            System.out.println(me.getValue());
+        }
+        showEmptyParagraph();
+    }
+
+    public static void showCollection() {
+        System.out.print("Наименование коллекции: ");
+        name = sc.next();
+        System.out.println("Значение\n" + tm.get(name));
+    }
+
+    public static void deleteCollection() {
+        System.out.print("Удалить коллекцию: ");
+        name = sc.next();
+        tm.remove(name);
+    }
+
+    public static void deleteAllCollections() {
+        System.out.println("Удалены все коллекции");
+        tm.clear();
     }
 }
 
