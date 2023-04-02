@@ -20,12 +20,12 @@ public class Main extends Indent {
                 "Удалить",                              // 4
                 "Очистить",                             // 5
                 "Вывести всё",                          // 6
-                "Добавить несколько коллекций",         // 7
+                "Добавить несколько в коллекцию",       // 7
                 "Добавить в коллекцию",                 // 8
-                "Вывести все коллекции",                // 9
-                "Вывести коллекцию",                    // 10
+                "Вывести коллекцию",                    // 9
+                "Вывести из коллекции",                 // 10
                 "Удалить из коллекции",                 // 11
-                "Очистить коллекции",                   // 12
+                "Очистить коллекцию",                   // 12
                 "Выйти"                                 // 13
         };
         int command;
@@ -61,23 +61,23 @@ public class Main extends Indent {
         else if (command == 6)
             showMetroStations();
         else if (command == 7)
-            addCollections();
+            addSomeToCollection();
         else if (command == 8)
             addToCollection();
         else if (command == 9)
-            showCollections();
-        else if (command == 10)
             showCollection();
+        else if (command == 10)
+            showFromCollection();
         else if (command == 11)
-            deleteCollection();
+            removeFromCollection();
         else if (command == 12)
-            deleteAllCollections();
+            deleteCollection();
         else if (command == 13)
             System.exit(0);
     }
 
-    public static void addCollections() {
-        System.out.println("Введите коллекции:");
+    public static void addSomeToCollection() {
+        System.out.println("Введите данные метро, которые добавятся в коллекцию:");
         do {
             requestMetroStation();
             tm.put(name, new MetroStation(name, lineMetro, numberOfExists));
@@ -160,8 +160,8 @@ public class Main extends Indent {
         tm.put(name, new MetroStation(name, lineMetro, numberOfExists));
     }
 
-    public static void showCollections() {
-        System.out.println("Коллекции");
+    public static void showCollection() {
+        System.out.println("Коллекция");
         Set set = tm.entrySet();
         Iterator i = set.iterator();
         while (i.hasNext()) {
@@ -173,20 +173,20 @@ public class Main extends Indent {
         showEmptyParagraph();
     }
 
-    public static void showCollection() {
-        System.out.print("Наименование коллекции: ");
+    public static void showFromCollection() {
+        System.out.print("Наименование метро в коллекции: ");
         name = sc.next();
         System.out.println("Значение\n" + tm.get(name));
     }
 
-    public static void deleteCollection() {
-        System.out.print("Удалить коллекцию: ");
+    public static void removeFromCollection() {
+        System.out.print("Удалить метро из коллекции: ");
         name = sc.next();
         tm.remove(name);
     }
 
-    public static void deleteAllCollections() {
-        System.out.println("Удалены все коллекции");
+    public static void deleteCollection() {
+        System.out.println("Коллекция очищена");
         tm.clear();
     }
 }
