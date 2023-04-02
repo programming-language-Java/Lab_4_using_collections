@@ -12,33 +12,33 @@ public class Main extends Indent {
     static TreeMap tm = new TreeMap();
 
     public static void main(String[] args) {
-        System.out.println("Настройка станций метро");
+        System.out.println("РќР°СЃС‚СЂРѕР№РєР° СЃС‚Р°РЅС†РёР№ РјРµС‚СЂРѕ");
         commands = new String[]{
-                "Добавить несколько",                   // 1
-                "Добавить по индексу",                  // 2
-                "Обновить",                             // 3
-                "Удалить",                              // 4
-                "Очистить",                             // 5
-                "Вывести всё",                          // 6
-                "Добавить несколько в коллекцию",       // 7
-                "Добавить в коллекцию",                 // 8
-                "Вывести коллекцию",                    // 9
-                "Вывести из коллекции",                 // 10
-                "Удалить из коллекции",                 // 11
-                "Очистить коллекцию",                   // 12
-                "Выйти"                                 // 13
+                "Р”РѕР±Р°РІРёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ",                   // 1
+                "Р”РѕР±Р°РІРёС‚СЊ РїРѕ РёРЅРґРµРєСЃСѓ",                  // 2
+                "РћР±РЅРѕРІРёС‚СЊ",                             // 3
+                "РЈРґР°Р»РёС‚СЊ",                              // 4
+                "РћС‡РёСЃС‚РёС‚СЊ",                             // 5
+                "Р’С‹РІРµСЃС‚Рё РІСЃС‘",                          // 6
+                "Р”РѕР±Р°РІРёС‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ РІ РєРѕР»Р»РµРєС†РёСЋ",       // 7
+                "Р”РѕР±Р°РІРёС‚СЊ РІ РєРѕР»Р»РµРєС†РёСЋ",                 // 8
+                "Р’С‹РІРµСЃС‚Рё РєРѕР»Р»РµРєС†РёСЋ",                    // 9
+                "Р’С‹РІРµСЃС‚Рё РёР· РєРѕР»Р»РµРєС†РёРё",                 // 10
+                "РЈРґР°Р»РёС‚СЊ РёР· РєРѕР»Р»РµРєС†РёРё",                 // 11
+                "РћС‡РёСЃС‚РёС‚СЊ РєРѕР»Р»РµРєС†РёСЋ",                   // 12
+                "Р’С‹Р№С‚Рё"                                 // 13
         };
         int command;
         do {
             showCommands();
-            System.out.print("Введите команду: ");
+            System.out.print("Р’РІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ: ");
             command = sc.nextInt();
             runCommand(command);
         } while (true);
     }
 
     public static void showCommands() {
-        System.out.println("Команды\n");
+        System.out.println("РљРѕРјР°РЅРґС‹\n");
         int numberCommand;
         for (int i = 0; i < commands.length; i++) {
             numberCommand = i + 1;
@@ -77,11 +77,11 @@ public class Main extends Indent {
     }
 
     public static void addSomeToCollection() {
-        System.out.println("Введите данные метро, которые добавятся в коллекцию:");
+        System.out.println("Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ РјРµС‚СЂРѕ, РєРѕС‚РѕСЂС‹Рµ РґРѕР±Р°РІСЏС‚СЃСЏ РІ РєРѕР»Р»РµРєС†РёСЋ:");
         do {
             requestMetroStation();
             tm.put(name, new MetroStation(name, lineMetro, numberOfExists));
-            System.out.print("Продолжить ввод станции метро? (y/n): ");
+            System.out.print("РџСЂРѕРґРѕР»Р¶РёС‚СЊ РІРІРѕРґ СЃС‚Р°РЅС†РёРё РјРµС‚СЂРѕ? (y/n): ");
             continueEntering = sc.next();
             showEmptyParagraph();
         } while (continueEntering.equals("y"));
@@ -89,58 +89,58 @@ public class Main extends Indent {
 
 
     public static void requestMetroStations() {
-        System.out.println("Введите станции метро:");
+        System.out.println("Р’РІРµРґРёС‚Рµ СЃС‚Р°РЅС†РёРё РјРµС‚СЂРѕ:");
         do {
             requestMetroStation();
             metroStation = new MetroStation(name, lineMetro, numberOfExists);
             metroStations.add(metroStation);
-            System.out.print("Продолжить ввод станции метро? (y/n): ");
+            System.out.print("РџСЂРѕРґРѕР»Р¶РёС‚СЊ РІРІРѕРґ СЃС‚Р°РЅС†РёРё РјРµС‚СЂРѕ? (y/n): ");
             continueEntering = sc.next();
             showEmptyParagraph();
         } while (continueEntering.equals("y"));
     }
 
     public static void requestMetroStation() {
-        System.out.print("Наименование: ");
+        System.out.print("РќР°РёРјРµРЅРѕРІР°РЅРёРµ: ");
         name = sc.next();
-        System.out.print("Линия метро: ");
+        System.out.print("Р›РёРЅРёСЏ РјРµС‚СЂРѕ: ");
         lineMetro = sc.next();
-        System.out.print("Число выходов: ");
+        System.out.print("Р§РёСЃР»Рѕ РІС‹С…РѕРґРѕРІ: ");
         numberOfExists = sc.nextInt();
     }
 
     public static void addByPosition() {
-        System.out.println("Добавление по позиции");
+        System.out.println("Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕ РїРѕР·РёС†РёРё");
         requestMetroStation();
-        System.out.print("Поставить в позицию: ");
+        System.out.print("РџРѕСЃС‚Р°РІРёС‚СЊ РІ РїРѕР·РёС†РёСЋ: ");
         int position = sc.nextInt() - 1;
         metroStation = new MetroStation(name, lineMetro, numberOfExists);
         metroStations.add(position, metroStation);
     }
 
     public static void update() {
-        System.out.println("Обновление");
+        System.out.println("РћР±РЅРѕРІР»РµРЅРёРµ");
         requestMetroStation();
-        System.out.print("Заменить позицию: ");
+        System.out.print("Р—Р°РјРµРЅРёС‚СЊ РїРѕР·РёС†РёСЋ: ");
         int position = sc.nextInt() - 1;
         metroStation = new MetroStation(name, lineMetro, numberOfExists);
         metroStations.set(position, metroStation);
     }
 
     public static void delete() {
-        System.out.println("Удаление");
-        System.out.print("Удалить позицию: ");
+        System.out.println("РЈРґР°Р»РµРЅРёРµ");
+        System.out.print("РЈРґР°Р»РёС‚СЊ РїРѕР·РёС†РёСЋ: ");
         int position = sc.nextInt() - 1;
         metroStations.remove(position);
     }
 
     public static void deleteAll() {
-        System.out.println("Удалено всё");
+        System.out.println("РЈРґР°Р»РµРЅРѕ РІСЃС‘");
         metroStations.clear();
     }
 
     public static void showMetroStations() {
-        System.out.println("Станции метро");
+        System.out.println("РЎС‚Р°РЅС†РёРё РјРµС‚СЂРѕ");
         boolean isExist = false;
         int position = 1;
         for (MetroStation metroStation : metroStations) {
@@ -150,18 +150,18 @@ public class Main extends Indent {
             position++;
         }
         if (!isExist)
-            System.out.println("Пусто");
+            System.out.println("РџСѓСЃС‚Рѕ");
         showEmptyParagraph();
     }
 
     public static void addToCollection() {
-        System.out.println("Добавить в коллекцию метро:");
+        System.out.println("Р”РѕР±Р°РІРёС‚СЊ РІ РєРѕР»Р»РµРєС†РёСЋ РјРµС‚СЂРѕ:");
         requestMetroStation();
         tm.put(name, new MetroStation(name, lineMetro, numberOfExists));
     }
 
     public static void showCollection() {
-        System.out.println("Коллекция");
+        System.out.println("РљРѕР»Р»РµРєС†РёСЏ");
         Set set = tm.entrySet();
         Iterator i = set.iterator();
         while (i.hasNext()) {
@@ -174,19 +174,19 @@ public class Main extends Indent {
     }
 
     public static void showFromCollection() {
-        System.out.print("Наименование метро в коллекции: ");
+        System.out.print("РќР°РёРјРµРЅРѕРІР°РЅРёРµ РјРµС‚СЂРѕ РІ РєРѕР»Р»РµРєС†РёРё: ");
         name = sc.next();
-        System.out.println("Значение\n" + tm.get(name));
+        System.out.println("Р—РЅР°С‡РµРЅРёРµ\n" + tm.get(name));
     }
 
     public static void removeFromCollection() {
-        System.out.print("Удалить метро из коллекции: ");
+        System.out.print("РЈРґР°Р»РёС‚СЊ РјРµС‚СЂРѕ РёР· РєРѕР»Р»РµРєС†РёРё: ");
         name = sc.next();
         tm.remove(name);
     }
 
     public static void deleteCollection() {
-        System.out.println("Коллекция очищена");
+        System.out.println("РљРѕР»Р»РµРєС†РёСЏ РѕС‡РёС‰РµРЅР°");
         tm.clear();
     }
 }
@@ -204,9 +204,9 @@ class MetroStation {
 
     @Override
     public String toString() {
-        return "Наименование: " + name +
-                "\nЛиния метро: " + lineMetro +
-                "\nЧисло выходов  " + numberOfExits;
+        return "РќР°РёРјРµРЅРѕРІР°РЅРёРµ: " + name +
+                "\nР›РёРЅРёСЏ РјРµС‚СЂРѕ: " + lineMetro +
+                "\nР§РёСЃР»Рѕ РІС‹С…РѕРґРѕРІ  " + numberOfExits;
     }
 
     public String getName() {
